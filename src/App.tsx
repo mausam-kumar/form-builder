@@ -1,10 +1,14 @@
 import './App.css'
+import FormFieldGenerator from './components/FormFieldGenerator'
+import { FormStateProvider } from './context/FormStateProvider'
 
-function App() {
+const App = () => {
 
   return (
     <>
-      <p>My App</p>
+      <FormStateProvider>
+        <FormFieldGenerator />
+      </FormStateProvider>
     </>
   )
 }
