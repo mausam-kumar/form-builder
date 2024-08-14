@@ -13,7 +13,7 @@ export const SelectMenu = ({
   options: SelectMenuOption[];
   title: string
 }) => {
-  console.log(options)
+  
   const {
     field: { value: selected, onChange: handleValueChange },
     fieldState,
