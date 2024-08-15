@@ -1,4 +1,4 @@
-export type FieldType = "text" | "textArea" | "file" | "dropdown" | "checkbox"
+export type FieldType = "text" | "textarea" | "file" | "dropdown" | "checkbox"
 
 export type SelectMenuOption = { id: string; name: string | number }
 

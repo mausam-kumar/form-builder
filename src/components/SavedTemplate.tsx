@@ -1,25 +1,22 @@
-//* eslint-disable @typescript-eslint/no-explicit-any */
-import { useFormStateContext } from "../context/FormStateProvider";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TField } from "../types";
-import { v4 as uuidv4 } from "uuid";
 import InputForm from "./forms/InputForm";
 import { SelectMenu } from "./forms/SelectMenu";
 import UploadFromDevice from "./forms/UploadFromDevice";
 import CheckboxInputForm from "./forms/CheckboxInputForm";
 import { FormProvider, useForm } from "react-hook-form";
-import Button from "./Button";
 import { useCookies } from "react-cookie";
 import TextArea from "./forms/TextArea";
 
-const FormMapper = () => {
-    const { formState } = useFormStateContext()
+const SavedTemplates = () => {
     const methods = useForm({
         defaultValues: {},
         mode: "onSubmit",
     });
-    const { handleSubmit, formState: formProviderState } = methods;
+    const { handleSubmit } = methods;
 
-    const [cookies, setCookie] = useCookies(["templates"]);
+    const [cookies] = useCookies(["templates"]);
+
 
     const renderAction = (data: TField) => {
         const { title, placeholder, options = [], name } = data || {}
@@ -37,26 +34,31 @@ const FormMapper = () => {
         }
     }
 
+    const templates = cookies.templates || []
+    console.log(templates)
     const handleFormSubmit = () => {
-        const prevTemplates = cookies.templates || []
-        setCookie("templates", [...prevTemplates, { id: uuidv4(), config: formState }])
+        // setCookie("templates", [...prevTemplates, { id: uuidv4(), config: formState }])
     }
 
     return <div className="w-full sm:min-w-96 p-4 border rounded-lg shadow-lg">
         <p className="pb-4 font-medium leading-6 text-gray-900">
-           Form Editor
+            Saved Templates
         </p>
         <FormProvider {...methods} >
-            <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col w-full">
+            <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col w-full space-y-8">
                 {
-                    formState.map((state) => renderAction(state))
+                    templates.map((state: any) => <div>
+                        <p className="pb-4 font-medium leading-6 text-gray-900">
+           {state.id}
+        </p>
+                        {
+                        state.config.map((value: any) => renderAction(value))
+                    }</div>)
                 }
-                <div className="mt-4">
-                {!!formState?.length && <Button disabled={!!formProviderState.isSubmitSuccessful} type="submit" text={formProviderState.isSubmitSuccessful ? "Saved" : "Save Template"} />}
-                </div>
+                {/* {!!formState?.length && <Button disabled={!!formProviderState.isSubmitSuccessful} type="submit" text={formProviderState.isSubmitSuccessful ? "Saved" : "Save Template"} />} */}
             </form>
         </FormProvider>
     </div>
 };
 
-export default FormMapper
+export default SavedTemplates

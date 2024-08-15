@@ -45,7 +45,7 @@ const FormFieldGenerator = () => {
                 <InputForm name="name" title="Name" placeholder="Name *Should be unique across form." />
                 <InputForm name="title" title="Write title for your Input field" placeholder="Add title" />
                 <InputForm name="placeholder" title="Write placeholder for your Input field" placeholder="Add placeholder" />
-                {showOptionField && <CreatableMultiSelectForm name="options" placeholder="Add options for dropdown" />}
+                {showOptionField && <CreatableMultiSelectForm name="options" placeholder="Start typing to add options for dropdown" />}
                 <Button type="submit" text="Add" />
             </form>
         </FormProvider>
