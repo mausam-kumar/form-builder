@@ -1,7 +1,7 @@
 import { useController } from "react-hook-form";
 import { FormInputComponentErrors } from "./FormComponentError";
 
-const CheckboxInputForm = ({ name }: { name: string }) => {
+const CheckboxInputForm = ({ name, title }: { name: string, title: string }) => {
     const {
         field: { value: selected, onChange: handleValueChange },
         fieldState,
@@ -25,7 +25,7 @@ const CheckboxInputForm = ({ name }: { name: string }) => {
                     New comments
                 </label>{' '}
                 <span id="comments-description" className="text-gray-500">
-                    <span className="sr-only">New comments </span>so you always know what's happening.
+                    {title}
                 </span>
             </div>
         </div>

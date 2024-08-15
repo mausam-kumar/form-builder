@@ -12,8 +12,8 @@ export const availableFields = [
         name: "Dropdown"
     },
     {
-        id: "image",
-        name: "Image"
+        id: "file",
+        name: "File"
     },
     {
         id: "checkbox",

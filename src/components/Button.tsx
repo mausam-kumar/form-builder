@@ -4,14 +4,16 @@ type ButtonProps = {
     onClick?: () => void
     text?: string
     type?: HTMLButtonElement["type"]
+    disabled?: boolean
 }
 
-const Button: FC<ButtonProps> = ({ onClick, text = "Submit", type="button" }) => {
-    return <div className="relative w-fit border">
+const Button: FC<ButtonProps> = ({ onClick, text = "Submit", type="button", disabled = false }) => {
+    return <div className="border">
         <button
             type={type}
             onClick={onClick}
-            className="rounded w-full text-white bg-slate-700 px-2 py-1 text-md font-medium shadow-sm"
+            disabled={disabled}
+            className="rounded w-full disabled:bg-opacity-50 text-white bg-slate-700 px-2 py-1 text-md font-medium shadow-sm"
         >
             {text}
         </button>
